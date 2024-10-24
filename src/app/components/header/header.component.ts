@@ -1,9 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {MatFormField} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {debounceTime, Subscription} from 'rxjs';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core'
+import {MatFormField} from '@angular/material/form-field'
+import {MatInput} from '@angular/material/input'
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
+import {debounceTime, map, Observable, Subscription} from 'rxjs';
+import {FilterService} from '../../services/filter.service'
+import {AsyncPipe, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,9 @@ import {debounceTime, Subscription} from 'rxjs';
     MatFormFieldModule,
     MatFormField,
     MatInput,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf,
+    AsyncPipe
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -20,6 +24,8 @@ import {debounceTime, Subscription} from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy{
   form!: FormGroup
   filterChangeSubscription!: Subscription | undefined
+
+  private filterService = inject(FilterService)
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -29,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.filterChangeSubscription = this.form.get('search')?.valueChanges
       .pipe(debounceTime(1500))
       .subscribe((value) => {
-      console.log(value)
+        this.filterService.filterFood(value)
     })
   }
 
