@@ -1,10 +1,12 @@
 .container {
   padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
 
   .card {
     background-color: #ffffff;
     max-width: 300px;
-    cursor: pointer;
+    margin-bottom: 15px;
 
     .image {
       border-radius: 8px;
