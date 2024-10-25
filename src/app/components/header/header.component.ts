@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core'
+import {ChangeDetectionStrategy, Component, inject, OnDestroy, OnInit} from '@angular/core'
 import {MatFormField} from '@angular/material/form-field'
 import {MatInput} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
@@ -19,7 +19,8 @@ import {AsyncPipe, NgIf} from '@angular/common';
     AsyncPipe
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit, OnDestroy{
   form!: FormGroup

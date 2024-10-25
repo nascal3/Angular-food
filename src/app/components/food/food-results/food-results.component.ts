@@ -1,6 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {FilterService} from '../../../services/filter.service';
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
+import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {MatCard, MatCardActions, MatCardHeader, MatCardTitle} from '@angular/material/card';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-food-results',
@@ -8,10 +10,17 @@ import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
   imports: [
     NgForOf,
     NgIf,
-    AsyncPipe
+    AsyncPipe,
+    NgOptimizedImage,
+    MatCard,
+    MatCardTitle,
+    MatCardHeader,
+    MatCardActions,
+    MatButton
   ],
   templateUrl: './food-results.component.html',
-  styleUrl: './food-results.component.scss'
+  styleUrl: './food-results.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FoodResultsComponent implements OnInit {
 
@@ -21,5 +30,9 @@ export class FoodResultsComponent implements OnInit {
 
   ngOnInit() {
     this.filterService.filterFood('pasta');
+  }
+
+  viewFood(id: number) {
+
   }
 }

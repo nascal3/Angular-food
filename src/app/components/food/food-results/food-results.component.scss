@@ -1,0 +1,20 @@
+.container {
+  padding: 15px 20px;
+
+  .card {
+    background-color: #ffffff;
+    max-width: 300px;
+    cursor: pointer;
+
+    .image {
+      border-radius: 8px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+
+
+  }
+}
+
