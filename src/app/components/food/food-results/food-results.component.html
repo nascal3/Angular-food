@@ -5,7 +5,7 @@
         <mat-card-title> {{result.title}}</mat-card-title>
       </mat-card-header>
       <div class="image">
-        <img mat-card-image src="{{result.image}}" alt="{{result.title}}">
+        <img mat-card-image [ngSrc]="result.image" width="312" height="231" priority alt="{{result.title}}">
       </div>
 
       <mat-card-actions>
