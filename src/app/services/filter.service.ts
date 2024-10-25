@@ -8,8 +8,10 @@ import {BehaviorSubject, catchError, Observable, of} from 'rxjs';
 })
 export class FilterService {
   private foodFilterResultsSubject =  new BehaviorSubject<food[]>([])
+  private foodDetailsSubject =  new BehaviorSubject<any>([])
 
   foodFilterResults$ = this.foodFilterResultsSubject.asObservable();
+  foodDetails$ = this.foodDetailsSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -25,6 +27,23 @@ export class FilterService {
       )
       .subscribe((data: filterFoodResults  ) => {
         this.foodFilterResultsSubject.next(data.results)
+    })
+  }
+
+  getFoodDetails(id: number): Observable<any> {
+    const baseUrl = 'https://api.spoonacular.com/recipes/'
+    const API_KEY = 'ae9acc90cbe842faa02e9cc3b209ac51'
+
+    const url = `${baseUrl}${id}/information?apiKey=${API_KEY}`
+    this.http.get<any>(url)
+      .pipe(
+        catchError((error) => {
+          console.error('Failed to fetch food details', error)
+          return of([])
+        })
+      )
+      .subscribe((data: any) => {
+        this.foodDetailsSubject.next(data)
     })
   }
 }
