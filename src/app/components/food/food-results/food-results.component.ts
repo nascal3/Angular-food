@@ -29,10 +29,10 @@ export class FoodResultsComponent implements OnInit {
   foodResults$ =  this.filterService.foodFilterResults$
 
   ngOnInit() {
-    this.filterService.filterFood('pasta');
+    this.filterService.filterFood('pasta')
   }
 
   viewFood(id: number) {
-
+    this.filterService.getFoodDetails(id)
   }
 }

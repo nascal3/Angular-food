@@ -1,1 +1,16 @@
-<p>food-details works!</p>
+<ng-container *ngIf="foodDetails$ | async as foodDetails; else selectFood">
+  <div>
+    <mat-card appearance="outlined" class="card" *ngIf="foodDetails">
+      <mat-card-header>{{foodDetails.title}}</mat-card-header>
+    </mat-card>
+  </div>
+</ng-container>
+
+
+<ng-template #selectFood>
+  <mat-card class="emptyCard">
+    <mat-card-header>
+      <mat-card-title> Select food</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+</ng-template>

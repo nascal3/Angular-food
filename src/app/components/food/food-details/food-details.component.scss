@@ -1,0 +1,23 @@
+.emptyCard {
+  background-color: #ffffff;
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.card {
+  background-color: #ffffff;
+  width: 300px;
+  margin-bottom: 15px;
+
+  .image {
+    border-radius: 8px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+
+
+}

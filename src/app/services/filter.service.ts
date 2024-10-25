@@ -8,7 +8,7 @@ import {BehaviorSubject, catchError, Observable, of} from 'rxjs';
 })
 export class FilterService {
   private foodFilterResultsSubject =  new BehaviorSubject<food[]>([])
-  private foodDetailsSubject =  new BehaviorSubject<any>([])
+  private foodDetailsSubject =  new BehaviorSubject<any>(null)
 
   foodFilterResults$ = this.foodFilterResultsSubject.asObservable();
   foodDetails$ = this.foodDetailsSubject.asObservable();
@@ -30,7 +30,7 @@ export class FilterService {
     })
   }
 
-  getFoodDetails(id: number): Observable<any> {
+  getFoodDetails(id: number) {
     const baseUrl = 'https://api.spoonacular.com/recipes/'
     const API_KEY = 'ae9acc90cbe842faa02e9cc3b209ac51'
 
