@@ -1,13 +1,13 @@
 import {Injectable, signal} from '@angular/core'
 import {HttpClient} from '@angular/common/http'
-import { filterFoodResults } from './results.interface';
+import { filterFoodResults, food } from './results.interface';
 import {BehaviorSubject, catchError, Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
-  private foodFilterResultsSubject =  new BehaviorSubject<any[]>([])
+  private foodFilterResultsSubject =  new BehaviorSubject<food[]>([])
 
   foodFilterResults$ = this.foodFilterResultsSubject.asObservable();
 
@@ -23,8 +23,7 @@ export class FilterService {
           return of([])
         })
       )
-      .subscribe((data: any  ) => {
-        debugger
+      .subscribe((data: filterFoodResults  ) => {
         this.foodFilterResultsSubject.next(data.results)
     })
   }
